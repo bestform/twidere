@@ -19,8 +19,8 @@
 
 package org.mariotaku.twidere.activity;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.fragment.WebViewFragment;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.net.Uri;
 import android.os.Bundle;

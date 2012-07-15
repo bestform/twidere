@@ -20,9 +20,9 @@
 package org.mariotaku.twidere.activity;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.fragment.NativeMapFragment;
 import org.mariotaku.twidere.fragment.WebMapFragment;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.net.Uri;
 import android.os.Bundle;

@@ -27,7 +27,7 @@ import java.io.FileFilter;
 import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.R;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.AsyncTaskManager;
 import org.mariotaku.twidere.util.GetExternalCacheDirAccessor;
 import org.mariotaku.twidere.util.LazyImageLoader;

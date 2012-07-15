@@ -28,7 +28,7 @@ import static org.mariotaku.twidere.util.Utils.getTableNameForContentUri;
 import org.mariotaku.twidere.activity.HomeActivity;
 import org.mariotaku.twidere.adapter.StatusesCursorAdapter;
 import org.mariotaku.twidere.app.TwidereApplication;
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
 import org.mariotaku.twidere.util.LazyImageLoader;
 
 import android.database.Cursor;
@@ -78,8 +78,8 @@ public abstract class CursorStatusesListFragment extends BaseStatusesListFragmen
 		final String[] cols = new String[] { Statuses._ID, Statuses.ACCOUNT_ID, Statuses.STATUS_ID,
 				Statuses.STATUS_TIMESTAMP, Statuses.TEXT_PLAIN, Statuses.NAME, Statuses.SCREEN_NAME,
 				Statuses.PROFILE_IMAGE_URL, Statuses.IN_REPLY_TO_SCREEN_NAME, Statuses.IN_REPLY_TO_STATUS_ID,
-				Statuses.LOCATION, Statuses.IS_RETWEET, Statuses.RETWEET_COUNT, Statuses.RETWEET_ID,
-				Statuses.RETWEETED_BY_NAME, Statuses.RETWEETED_BY_SCREEN_NAME, Statuses.IS_FAVORITE,
+				Statuses.LOCATION, Statuses.IS_REPOST, Statuses.RETWEET_COUNT, Statuses.REPOST_ID,
+				Statuses.REPOSTED_BY_NAME, Statuses.REPOSTED_BY_SCREEN_NAME, Statuses.IS_FAVORITE,
 				Statuses.HAS_MEDIA, Statuses.IS_PROTECTED, Statuses.IS_GAP };
 		final Uri uri = getContentUri();
 		final String sort_by = getSharedPreferences().getBoolean(PREFERENCE_KEY_SORT_TIMELINE_BY_TIME, false) ? Statuses.SORT_ORDER_TIMESTAMP_DESC

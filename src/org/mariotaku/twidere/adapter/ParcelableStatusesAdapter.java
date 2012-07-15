@@ -26,9 +26,9 @@ import static org.mariotaku.twidere.util.Utils.isNullOrEmpty;
 
 import java.util.List;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.model.ParcelableStatus;
 import org.mariotaku.twidere.model.StatusViewHolder;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.LazyImageLoader;
 import org.mariotaku.twidere.util.StatusesAdapterInterface;
 

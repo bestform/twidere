@@ -19,8 +19,8 @@
 
 package org.mariotaku.twidere.fragment;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.activity.BaseActivity;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

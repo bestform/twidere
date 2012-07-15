@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.mariotaku.twidere.service;
+package org.mariotaku.twidere.sinaweibo.service;
 
 import static org.mariotaku.twidere.util.Utils.buildQueryUri;
 import static org.mariotaku.twidere.util.Utils.getActivatedAccountIds;
@@ -36,16 +36,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.ITwidereService;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.activity.HomeActivity;
 import org.mariotaku.twidere.app.TwidereApplication;
-import org.mariotaku.twidere.provider.TweetStore;
-import org.mariotaku.twidere.provider.TweetStore.CachedUsers;
-import org.mariotaku.twidere.provider.TweetStore.DirectMessages;
-import org.mariotaku.twidere.provider.TweetStore.Drafts;
-import org.mariotaku.twidere.provider.TweetStore.Mentions;
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore;
+import org.mariotaku.twidere.provider.WeiboStore.CachedUsers;
+import org.mariotaku.twidere.provider.WeiboStore.DirectMessages;
+import org.mariotaku.twidere.provider.WeiboStore.Drafts;
+import org.mariotaku.twidere.provider.WeiboStore.Mentions;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.AsyncTaskManager;
 import org.mariotaku.twidere.util.ListUtils;
 import org.mariotaku.twidere.util.ManagedAsyncTask;
@@ -428,14 +427,14 @@ public class TwidereService extends Service implements Constants {
 				if (user != null && retweeted_status != null) {
 					final ContentValues values = new ContentValues();
 					values.put(Statuses.RETWEET_COUNT, result.data.getRetweetCount());
-					values.put(Statuses.RETWEET_ID, -1);
-					values.put(Statuses.RETWEETED_BY_ID, -1);
-					values.put(Statuses.RETWEETED_BY_NAME, "");
-					values.put(Statuses.RETWEETED_BY_SCREEN_NAME, "");
-					values.put(Statuses.IS_RETWEET, 0);
+					values.put(Statuses.REPOST_ID, -1);
+					values.put(Statuses.REPOSTED_BY_ID, -1);
+					values.put(Statuses.REPOSTED_BY_NAME, "");
+					values.put(Statuses.REPOSTED_BY_SCREEN_NAME, "");
+					values.put(Statuses.IS_REPOST, 0);
 					final String status_where = Statuses.STATUS_ID + " = " + result.data.getId();
 					final String retweet_where = Statuses.STATUS_ID + " = " + retweeted_status.getId();
-					for (final Uri uri : TweetStore.STATUSES_URIS) {
+					for (final Uri uri : WeiboStore.STATUSES_URIS) {
 						resolver.delete(uri, status_where, null);
 						resolver.update(uri, values, retweet_where, null);
 					}
@@ -540,9 +539,9 @@ public class TwidereService extends Service implements Constants {
 				where.append("(");
 				where.append(Statuses.STATUS_ID + "=" + status_id);
 				where.append(" OR ");
-				where.append(Statuses.RETWEET_ID + "=" + status_id);
+				where.append(Statuses.REPOST_ID + "=" + status_id);
 				where.append(")");
-				for (final Uri uri : TweetStore.STATUSES_URIS) {
+				for (final Uri uri : WeiboStore.STATUSES_URIS) {
 					resolver.update(uri, values, where.toString(), null);
 				}
 				final Intent intent = new Intent(BROADCAST_FAVORITE_CHANGED);
@@ -727,9 +726,9 @@ public class TwidereService extends Service implements Constants {
 				where.append("(");
 				where.append(Statuses.STATUS_ID + "=" + status_id);
 				where.append(" OR ");
-				where.append(Statuses.RETWEET_ID + "=" + status_id);
+				where.append(Statuses.REPOST_ID + "=" + status_id);
 				where.append(")");
-				for (final Uri uri : TweetStore.STATUSES_URIS) {
+				for (final Uri uri : WeiboStore.STATUSES_URIS) {
 					resolver.update(uri, values, where.toString(), null);
 				}
 				final Intent intent = new Intent(BROADCAST_FAVORITE_CHANGED);
@@ -822,8 +821,8 @@ public class TwidereService extends Service implements Constants {
 				final ContentResolver resolver = getContentResolver();
 				final StringBuilder where = new StringBuilder();
 				where.append(Statuses.STATUS_ID + " = " + status_id);
-				where.append(" OR " + Statuses.RETWEET_ID + " = " + status_id);
-				for (final Uri uri : TweetStore.STATUSES_URIS) {
+				where.append(" OR " + Statuses.REPOST_ID + " = " + status_id);
+				for (final Uri uri : WeiboStore.STATUSES_URIS) {
 					resolver.delete(uri, where.toString(), null);
 				}
 				Toast.makeText(TwidereService.this, R.string.delete_success, Toast.LENGTH_SHORT).show();
@@ -1133,16 +1132,16 @@ public class TwidereService extends Service implements Constants {
 				final twitter4j.Status retweeted_status = result.data.getRetweetedStatus();
 				if (user != null && retweeted_status != null) {
 					final ContentValues values = new ContentValues();
-					values.put(Statuses.RETWEET_ID, result.data.getId());
-					values.put(Statuses.RETWEETED_BY_ID, user.getId());
-					values.put(Statuses.RETWEETED_BY_NAME, user.getName());
-					values.put(Statuses.RETWEETED_BY_SCREEN_NAME, user.getScreenName());
+					values.put(Statuses.REPOST_ID, result.data.getId());
+					values.put(Statuses.REPOSTED_BY_ID, user.getId());
+					values.put(Statuses.REPOSTED_BY_NAME, user.getName());
+					values.put(Statuses.REPOSTED_BY_SCREEN_NAME, user.getScreenName());
 					values.put(Statuses.RETWEET_COUNT, retweeted_status.getRetweetCount());
-					values.put(Statuses.IS_RETWEET, 1);
+					values.put(Statuses.IS_REPOST, 1);
 					final StringBuilder where = new StringBuilder();
 					where.append(Statuses.STATUS_ID + " = " + retweeted_status.getId());
-					where.append(" OR " + Statuses.RETWEET_ID + " = " + retweeted_status.getId());
-					for (final Uri uri : TweetStore.STATUSES_URIS) {
+					where.append(" OR " + Statuses.REPOST_ID + " = " + retweeted_status.getId());
+					for (final Uri uri : WeiboStore.STATUSES_URIS) {
 						resolver.update(uri, values, where.toString(), null);
 					}
 				}
@@ -1211,7 +1210,7 @@ public class TwidereService extends Service implements Constants {
 	 * ensure that the Service can be GCd even when the system process still has
 	 * a remote reference to the stub.
 	 */
-	private static final class ServiceStub extends ITwidereService.Stub {
+	private static final class ServiceStub extends org.mariotaku.twidere.sinaweibo.ITwidereService.Stub {
 
 		final WeakReference<TwidereService> mService;
 
@@ -1687,7 +1686,7 @@ public class TwidereService extends Service implements Constants {
 					where.append("(");
 					where.append(Statuses.STATUS_ID + " IN ( " + ListUtils.buildString(status_ids, ',', true) + " ) ");
 					where.append(" OR ");
-					where.append(Statuses.RETWEET_ID + " IN ( " + ListUtils.buildString(status_ids, ',', true) + " ) ");
+					where.append(Statuses.REPOST_ID + " IN ( " + ListUtils.buildString(status_ids, ',', true) + " ) ");
 					where.append(")");
 					rows_deleted = resolver.delete(query_uri, where.toString(), null);
 				}

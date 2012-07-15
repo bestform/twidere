@@ -16,7 +16,7 @@
 
 package org.mariotaku.twidere.view;
 
-import org.mariotaku.twidere.R;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

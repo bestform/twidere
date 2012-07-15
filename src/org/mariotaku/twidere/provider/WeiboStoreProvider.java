@@ -28,13 +28,13 @@ import static org.mariotaku.twidere.util.Utils.parseInt;
 import java.util.List;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.provider.TweetStore.Accounts;
-import org.mariotaku.twidere.provider.TweetStore.CachedUsers;
-import org.mariotaku.twidere.provider.TweetStore.DirectMessages;
-import org.mariotaku.twidere.provider.TweetStore.Drafts;
-import org.mariotaku.twidere.provider.TweetStore.Filters;
-import org.mariotaku.twidere.provider.TweetStore.Mentions;
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore.Accounts;
+import org.mariotaku.twidere.provider.WeiboStore.CachedUsers;
+import org.mariotaku.twidere.provider.WeiboStore.DirectMessages;
+import org.mariotaku.twidere.provider.WeiboStore.Drafts;
+import org.mariotaku.twidere.provider.WeiboStore.Filters;
+import org.mariotaku.twidere.provider.WeiboStore.Mentions;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
 import org.mariotaku.twidere.util.ArrayUtils;
 
 import android.content.ContentProvider;
@@ -46,7 +46,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
-public final class TweetStoreProvider extends ContentProvider implements Constants {
+public final class WeiboStoreProvider extends ContentProvider implements Constants {
 
 	private SQLiteDatabase database;
 

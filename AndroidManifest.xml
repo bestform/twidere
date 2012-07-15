@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="org.mariotaku.twidere"
+	package="org.mariotaku.twidere.sinaweibo"
 	android:installLocation="auto"
 	android:versionCode="25"
 	android:versionName="@string/app_version">
@@ -10,20 +10,20 @@
 		android:targetSdkVersion="16"/>
 
 	<permission-group
-		android:name="org.mariotaku.twidere.ACCESS_APPLICATION"
+		android:name="org.mariotaku.twidere.sinaweibo.ACCESS_APPLICATION"
 		android:label="@string/label_permission_group_access_twidere"/>
 
 	<permission
-		android:name="org.mariotaku.twidere.READ_DATABASES"
+		android:name="org.mariotaku.twidere.sinaweibo.READ_DATABASES"
 		android:description="@string/description_permission_read_databases"
 		android:label="@string/label_permission_read_databases"
-		android:permissionGroup="org.mariotaku.twidere.ACCESS_APPLICATION"
+		android:permissionGroup="org.mariotaku.twidere.sinaweibo.ACCESS_APPLICATION"
 		android:protectionLevel="dangerous"/>
 	<permission
-		android:name="org.mariotaku.twidere.WRITE_DATABASES"
+		android:name="org.mariotaku.twidere.sinaweibo.WRITE_DATABASES"
 		android:description="@string/description_permission_write_databases"
 		android:label="@string/label_permission_write_databases"
-		android:permissionGroup="org.mariotaku.twidere.ACCESS_APPLICATION"
+		android:permissionGroup="org.mariotaku.twidere.sinaweibo.ACCESS_APPLICATION"
 		android:protectionLevel="dangerous"/>
 
 	<uses-feature
@@ -49,7 +49,7 @@
 	<uses-permission android:name="org.mariotaku.twidere.WRITE_DATABASES"/>
 
 	<application
-		android:name=".app.TwidereApplication"
+		android:name="org.mariotaku.twidere.app.TwidereApplication"
 		android:hardwareAccelerated="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
@@ -59,7 +59,7 @@
 			android:required="false"/>
 
 		<activity
-			android:name=".activity.HomeActivity"
+			android:name="org.mariotaku.twidere.activity.HomeActivity"
 			android:label="@string/app_name"
 			android:launchMode="singleTop"
 			android:windowSoftInputMode="adjustNothing">
@@ -80,7 +80,7 @@
 				android:value=".activity.SearchActivity"/>
 		</activity>
 		<activity
-			android:name=".activity.ComposeActivity"
+			android:name="org.mariotaku.twidere.activity.ComposeActivity"
 			android:label="@string/compose"
 			android:launchMode="singleTop"
 			android:windowSoftInputMode="adjustResize">
@@ -101,7 +101,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.TwitterLoginActivity"
+			android:name="org.mariotaku.twidere.activity.WeiboLoginActivity"
 			android:label="@string/login_to_twitter"
 			android:windowSoftInputMode="adjustResize">
 			<intent-filter>
@@ -112,7 +112,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.SettingsActivity"
+			android:name="org.mariotaku.twidere.activity.SettingsActivity"
 			android:label="@string/settings"
 			android:theme="@style/Theme.Twidere.Light">
 			<intent-filter>
@@ -124,7 +124,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.AuthorizationActivity"
+			android:name="org.mariotaku.twidere.activity.AuthorizationActivity"
 			android:label="@string/login_to_twitter">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -133,18 +133,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.EditAPIActivity"
-			android:label="@string/edit_api"
-			android:theme="@style/Theme.Twidere.Light.Dialog">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
-				<action android:name="org.mariotaku.twidere.EDIT_API"/>
-
-				<category android:name="android.intent.category.DEFAULT"/>
-			</intent-filter>
-		</activity>
-		<activity
-			android:name=".activity.SelectAccountActivity"
+			android:name="org.mariotaku.twidere.activity.SelectAccountActivity"
 			android:label="@string/select_account"
 			android:theme="@style/Theme.Twidere.Light.Dialog">
 			<intent-filter>
@@ -155,7 +144,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.BrowserActivity"
+			android:name="org.mariotaku.twidere.activity.BrowserActivity"
 			android:label="@string/browser">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -164,7 +153,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.AboutActivity"
+			android:name="org.mariotaku.twidere.activity.AboutActivity"
 			android:label="@string/about">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -174,7 +163,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.LicenseActivity"
+			android:name="org.mariotaku.twidere.activity.LicenseActivity"
 			android:label="@string/license"
 			android:theme="@style/Theme.Twidere.Light.Dialog">
 			<intent-filter>
@@ -185,7 +174,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.FiltersActivity"
+			android:name="org.mariotaku.twidere.activity.FiltersActivity"
 			android:label="@string/filter"
 			android:windowSoftInputMode="adjustResize">
 			<intent-filter>
@@ -196,7 +185,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.SetColorActivity"
+			android:name="org.mariotaku.twidere.activity.SetColorActivity"
 			android:label="@string/set_color"
 			android:theme="@style/Theme.Twidere.Light.Dialog">
 			<intent-filter>
@@ -207,7 +196,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.LinkHandlerActivity"
+			android:name="org.mariotaku.twidere.activity.LinkHandlerActivity"
 			android:windowSoftInputMode="adjustResize">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
@@ -254,7 +243,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.SearchActivity"
+			android:name="org.mariotaku.twidere.activity.SearchActivity"
 			android:windowSoftInputMode="adjustResize">
 			<meta-data
 				android:name="android.app.searchable"
@@ -275,7 +264,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.DirectMessagesActivity"
+			android:name="org.mariotaku.twidere.activity.DirectMessagesActivity"
 			android:label="@string/direct_messages">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -285,7 +274,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.DraftsActivity"
+			android:name="org.mariotaku.twidere.activity.DraftsActivity"
 			android:label="@string/drafts">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -295,7 +284,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.ImageViewerActivity"
+			android:name="org.mariotaku.twidere.activity.ImageViewerActivity"
 			android:label="@string/view_image"
 			android:theme="@style/Theme.Twidere.Viewer">
 			<intent-filter>
@@ -309,7 +298,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.MapViewerActivity"
+			android:name="org.mariotaku.twidere.activity.MapViewerActivity"
 			android:label="@string/view_map"
 			android:theme="@style/Theme.Twidere.Viewer">
 			<intent-filter>
@@ -324,10 +313,10 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.NativeMapActivity"
+			android:name="org.mariotaku.twidere.activity.NativeMapActivity"
 			android:label="@string/view_map"/>
 		<activity
-			android:name=".activity.FileSaveAsActivity"
+			android:name="org.mariotaku.twidere.activity.FileSaveAsActivity"
 			android:label="@string/save_as">
 			<intent-filter>
 				<action android:name="org.mariotaku.twidere.SAVE_FILE"/>
@@ -348,14 +337,14 @@
 		</service>
 
 		<provider
-			android:name=".provider.TweetStoreProvider"
-			android:authorities="org.mariotaku.twidere.provider.TweetStore"
+			android:name="org.mariotaku.twidere.provider.WeiboStoreProvider"
+			android:authorities="org.mariotaku.twidere.provider.WeiboStore"
 			android:label="@string/label_tweetstore_provider"
-			android:readPermission="org.mariotaku.twidere.READ_DATABASES"
-			android:writePermission="org.mariotaku.twidere.WRITE_DATABASES"/>
+			android:readPermission="org.mariotaku.twidere.sinaweibo.READ_DATABASES"
+			android:writePermission="org.mariotaku.twidere.sinaweibo.WRITE_DATABASES"/>
 		<provider
-			android:name=".provider.RecentSearchProvider"
-			android:authorities="org.mariotaku.twidere.provider.SearchRecentSuggestions"/>
+			android:name="org.mariotaku.twidere.provider.RecentSearchProvider"
+			android:authorities="org.mariotaku.twidere.provider.WeiboSearchRecentSuggestions"/>
 	</application>
 
 </manifest>

@@ -19,7 +19,7 @@
 
 package org.mariotaku.twidere.fragment;
 
-import org.mariotaku.twidere.provider.TweetStore.Mentions;
+import org.mariotaku.twidere.provider.WeiboStore.Mentions;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

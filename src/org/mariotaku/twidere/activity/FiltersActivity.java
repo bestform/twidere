@@ -20,10 +20,10 @@
 package org.mariotaku.twidere.activity;
 
 import org.mariotaku.actionbarcompat.ActionBar;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.fragment.FiltersFragment.FilteredKeywordsFragment;
 import org.mariotaku.twidere.fragment.FiltersFragment.FilteredSourcesFragment;
 import org.mariotaku.twidere.fragment.FiltersFragment.FilteredUsersFragment;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.content.Context;
 import android.content.SharedPreferences;

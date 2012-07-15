@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.R;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;

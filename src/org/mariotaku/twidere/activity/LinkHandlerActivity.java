@@ -26,7 +26,6 @@ import static org.mariotaku.twidere.util.Utils.isNullOrEmpty;
 import static org.mariotaku.twidere.util.Utils.parseInt;
 import static org.mariotaku.twidere.util.Utils.parseLong;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.fragment.DirectMessagesConversationFragment;
 import org.mariotaku.twidere.fragment.ListMembersFragment;
 import org.mariotaku.twidere.fragment.ListSubscribersFragment;
@@ -39,6 +38,7 @@ import org.mariotaku.twidere.fragment.UserProfileFragment;
 import org.mariotaku.twidere.fragment.UserTimelineFragment;
 import org.mariotaku.twidere.fragment.ViewConversationFragment;
 import org.mariotaku.twidere.fragment.ViewStatusFragment;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.content.Intent;
 import android.content.UriMatcher;

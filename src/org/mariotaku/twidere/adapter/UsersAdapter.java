@@ -21,10 +21,10 @@ package org.mariotaku.twidere.adapter;
 
 import java.util.List;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.app.TwidereApplication;
 import org.mariotaku.twidere.model.ParcelableUser;
 import org.mariotaku.twidere.model.UserViewHolder;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.BaseAdapterInterface;
 import org.mariotaku.twidere.util.LazyImageLoader;
 

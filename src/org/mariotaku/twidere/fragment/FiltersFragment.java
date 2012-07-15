@@ -19,8 +19,8 @@
 
 package org.mariotaku.twidere.fragment;
 
-import org.mariotaku.twidere.R;
-import org.mariotaku.twidere.provider.TweetStore.Filters;
+import org.mariotaku.twidere.provider.WeiboStore.Filters;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

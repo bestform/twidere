@@ -36,7 +36,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.R;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.GetExternalCacheDirAccessor;
 import org.mariotaku.twidere.view.ImageViewer;
 

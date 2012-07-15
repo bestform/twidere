@@ -19,7 +19,7 @@
 
 package org.mariotaku.twidere.model;
 
-import org.mariotaku.twidere.R;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.content.Context;
 import android.view.View;

@@ -22,7 +22,7 @@ package org.mariotaku.twidere.util;
 import static org.mariotaku.twidere.util.ServiceUtils.bindToService;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.ITwidereService;
+import org.mariotaku.twidere.sinaweibo.ITwidereService;
 
 import android.content.ComponentName;
 import android.content.Context;

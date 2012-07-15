@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.mariotaku.twidere;
+package org.mariotaku.twidere.sinaweibo;
 
 interface ITwidereService {
 	int getHomeTimeline(in long[] account_ids, in long[] max_ids);

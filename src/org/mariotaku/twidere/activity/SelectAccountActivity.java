@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.R;
-import org.mariotaku.twidere.provider.TweetStore.Accounts;
+import org.mariotaku.twidere.provider.WeiboStore.Accounts;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.content.Intent;
 import android.database.Cursor;

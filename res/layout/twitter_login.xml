@@ -6,70 +6,32 @@
 		android:layout_height="fill_parent"
 		android:layout_gravity="center">
 
-		<RelativeLayout
+		<LinearLayout
+			android:id="@+id/sign_in_sign_up"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:gravity="center">
+			android:orientation="horizontal"
+			android:padding="8dp">
 
-			<LinearLayout
-				android:id="@+id/username_password"
+			<Button
+				android:id="@+id/sign_in"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true"
-				android:orientation="vertical"
-				android:padding="8dp">
+				android:layout_weight="1"
+				android:minHeight="48dp"
+				android:onClick="onClick"
+				android:text="@string/sign_in"/>
 
-				<EditText
-					android:id="@+id/username"
-					style="?editTextStyle"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:ems="10"
-					android:hint="@string/username"
-					android:inputType="textPersonName"
-					android:singleLine="true"/>
-
-				<EditText
-					android:id="@+id/password"
-					style="?editTextStyle"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="8dp"
-					android:ems="10"
-					android:hint="@string/password"
-					android:inputType="textPassword"
-					android:singleLine="true"/>
-			</LinearLayout>
-
-			<LinearLayout
-				android:id="@+id/sign_in_sign_up"
+			<Button
+				android:id="@+id/sign_up"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true"
-				android:layout_below="@+id/username_password"
-				android:orientation="horizontal"
-				android:padding="8dp">
-
-				<Button
-					android:id="@+id/sign_in"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:minHeight="48dp"
-					android:onClick="onClick"
-					android:text="@string/sign_in"/>
-
-				<Button
-					android:id="@+id/sign_up"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:minHeight="48dp"
-					android:onClick="onClick"
-					android:text="@string/sign_up"/>
-			</LinearLayout>
-		</RelativeLayout>
+				android:layout_weight="1"
+				android:minHeight="48dp"
+				android:onClick="onClick"
+				android:text="@string/sign_up"/>
+		</LinearLayout>
 	</ScrollView>
 
 	<ImageButton

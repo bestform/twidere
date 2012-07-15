@@ -23,10 +23,10 @@ import static org.mariotaku.twidere.util.Utils.getActivatedAccountScreenNames;
 import static org.mariotaku.twidere.util.Utils.isMyActivatedAccount;
 
 import org.mariotaku.actionbarcompat.ActionBar;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.adapter.DirectMessagesEntryAdapter;
 import org.mariotaku.twidere.fragment.DirectMessagesConversationFragment;
-import org.mariotaku.twidere.provider.TweetStore.DirectMessages;
+import org.mariotaku.twidere.provider.WeiboStore.DirectMessages;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.LazyImageLoader;
 import org.mariotaku.twidere.util.ServiceInterface;
 import org.mariotaku.twidere.util.Utils;

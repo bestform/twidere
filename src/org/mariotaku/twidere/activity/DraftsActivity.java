@@ -24,8 +24,8 @@ import java.util.List;
 
 import org.mariotaku.popupmenu.PopupMenu;
 import org.mariotaku.popupmenu.PopupMenu.OnMenuItemClickListener;
-import org.mariotaku.twidere.R;
-import org.mariotaku.twidere.provider.TweetStore.Drafts;
+import org.mariotaku.twidere.provider.WeiboStore.Drafts;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.ServiceInterface;
 
 import android.app.Activity;

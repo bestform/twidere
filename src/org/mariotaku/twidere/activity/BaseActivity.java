@@ -23,8 +23,8 @@ import static org.mariotaku.twidere.util.Utils.restartActivity;
 
 import org.mariotaku.actionbarcompat.ActionBarFragmentActivity;
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.app.TwidereApplication;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.ActivityThemeChangeInterface;
 
 import android.content.Context;

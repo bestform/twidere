@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.mariotaku.twidere.R;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.LazyImageLoader;
 
 import android.content.Context;

@@ -45,7 +45,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import org.mariotaku.twidere.Constants;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.activity.HomeActivity;
 import org.mariotaku.twidere.fragment.ImagesPreviewFragment.ImageSpec;
 import org.mariotaku.twidere.fragment.ListTimelineFragment;
@@ -61,13 +60,14 @@ import org.mariotaku.twidere.model.DirectMessageCursorIndices;
 import org.mariotaku.twidere.model.ParcelableDirectMessage;
 import org.mariotaku.twidere.model.ParcelableStatus;
 import org.mariotaku.twidere.model.StatusCursorIndices;
-import org.mariotaku.twidere.provider.TweetStore;
-import org.mariotaku.twidere.provider.TweetStore.Accounts;
-import org.mariotaku.twidere.provider.TweetStore.CachedUsers;
-import org.mariotaku.twidere.provider.TweetStore.DirectMessages;
-import org.mariotaku.twidere.provider.TweetStore.Filters;
-import org.mariotaku.twidere.provider.TweetStore.Mentions;
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore;
+import org.mariotaku.twidere.provider.WeiboStore.Accounts;
+import org.mariotaku.twidere.provider.WeiboStore.CachedUsers;
+import org.mariotaku.twidere.provider.WeiboStore.DirectMessages;
+import org.mariotaku.twidere.provider.WeiboStore.Filters;
+import org.mariotaku.twidere.provider.WeiboStore.Mentions;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import twitter4j.DirectMessage;
 import twitter4j.GeoLocation;
@@ -82,8 +82,6 @@ import twitter4j.URLEntity;
 import twitter4j.User;
 import twitter4j.UserList;
 import twitter4j.auth.AccessToken;
-import twitter4j.auth.BasicAuthorization;
-import twitter4j.auth.TwipOModeAuthorization;
 import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -155,24 +153,24 @@ public final class Utils implements Constants {
 
 	static {
 		CONTENT_PROVIDER_URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_STATUSES, URI_STATUSES);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_ACCOUNTS, URI_ACCOUNTS);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_MENTIONS, URI_MENTIONS);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_DRAFTS, URI_DRAFTS);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_CACHED_USERS, URI_CACHED_USERS);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_FILTERED_USERS, URI_FILTERED_USERS);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_FILTERED_KEYWORDS, URI_FILTERED_KEYWORDS);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_FILTERED_SOURCES, URI_FILTERED_SOURCES);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_DIRECT_MESSAGES, URI_DIRECT_MESSAGES);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_DIRECT_MESSAGES_INBOX,
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_STATUSES, URI_STATUSES);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_ACCOUNTS, URI_ACCOUNTS);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_MENTIONS, URI_MENTIONS);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_DRAFTS, URI_DRAFTS);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_CACHED_USERS, URI_CACHED_USERS);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_FILTERED_USERS, URI_FILTERED_USERS);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_FILTERED_KEYWORDS, URI_FILTERED_KEYWORDS);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_FILTERED_SOURCES, URI_FILTERED_SOURCES);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_DIRECT_MESSAGES, URI_DIRECT_MESSAGES);
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_DIRECT_MESSAGES_INBOX,
 				URI_DIRECT_MESSAGES_INBOX);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_DIRECT_MESSAGES_OUTBOX,
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_DIRECT_MESSAGES_OUTBOX,
 				URI_DIRECT_MESSAGES_OUTBOX);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_DIRECT_MESSAGES_CONVERSATION + "/#/#",
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_DIRECT_MESSAGES_CONVERSATION + "/#/#",
 				URI_DIRECT_MESSAGES_CONVERSATION);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_DIRECT_MESSAGES_CONVERSATION_SCREEN_NAME
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_DIRECT_MESSAGES_CONVERSATION_SCREEN_NAME
 				+ "/#/*", URI_DIRECT_MESSAGES_CONVERSATION_SCREEN_NAME);
-		CONTENT_PROVIDER_URI_MATCHER.addURI(TweetStore.AUTHORITY, TABLE_DIRECT_MESSAGES_CONVERSATIONS_ENTRY + "/#",
+		CONTENT_PROVIDER_URI_MATCHER.addURI(WeiboStore.AUTHORITY, TABLE_DIRECT_MESSAGES_CONVERSATIONS_ENTRY + "/#",
 				URI_DIRECT_MESSAGES_CONVERSATIONS_ENTRY);
 	}
 
@@ -203,14 +201,14 @@ public final class Utils implements Constants {
 	}
 
 	public static Uri buildDirectMessageConversationsEntryUri(long account_id) {
-		if (account_id <= 0) return TweetStore.NULL_CONTENT_URI;
+		if (account_id <= 0) return WeiboStore.NULL_CONTENT_URI;
 		final Uri.Builder builder = DirectMessages.ConversationsEntry.CONTENT_URI.buildUpon();
 		builder.appendPath(String.valueOf(account_id));
 		return builder.build();
 	}
 
 	public static Uri buildDirectMessageConversationUri(long account_id, long conversation_id, String screen_name) {
-		if (conversation_id <= 0 && screen_name == null) return TweetStore.NULL_CONTENT_URI;
+		if (conversation_id <= 0 && screen_name == null) return WeiboStore.NULL_CONTENT_URI;
 		final Uri.Builder builder = conversation_id > 0 ? DirectMessages.Conversation.CONTENT_URI.buildUpon()
 				: DirectMessages.Conversation.CONTENT_URI_SCREEN_NAME.buildUpon();
 		builder.appendPath(String.valueOf(account_id));
@@ -375,35 +373,6 @@ public final class Utils implements Constants {
 		final String text = status.getText();
 		if (text == null) return null;
 		final HtmlBuilder builder = new HtmlBuilder(text, DEBUG);
-		final URLEntity[] urls = status.getURLEntities();
-		if (urls != null) {
-			for (final URLEntity url_entity : urls) {
-				final int start = url_entity.getStart();
-				final int end = url_entity.getEnd();
-				if (start < 0 || end > text.length()) {
-					continue;
-				}
-				final URL expanded_url = url_entity.getExpandedURL();
-				if (expanded_url != null) {
-					builder.addLink(expanded_url.toString(), start, end);
-				}
-			}
-		}
-		// Format media.
-		final MediaEntity[] medias = status.getMediaEntities();
-		if (medias != null) {
-			for (final MediaEntity media_item : medias) {
-				final int start = media_item.getStart();
-				final int end = media_item.getEnd();
-				if (start < 0 || end > text.length()) {
-					continue;
-				}
-				final URL media_url = media_item.getMediaURL();
-				if (media_url != null) {
-					builder.addLink(media_url.toString(), start, end);
-				}
-			}
-		}
 		return builder.build();
 	}
 
@@ -924,7 +893,7 @@ public final class Utils implements Constants {
 	 */
 	@Deprecated
 	public static long getRetweetedByUserId(Context context, long status_id) {
-		final String[] cols = new String[] { Statuses.RETWEETED_BY_ID };
+		final String[] cols = new String[] { Statuses.REPOSTED_BY_ID };
 		final String where = Statuses.STATUS_ID + "=" + status_id;
 
 		for (final Uri uri : STATUSES_URIS) {
@@ -934,7 +903,7 @@ public final class Utils implements Constants {
 			}
 			if (cur.getCount() > 0) {
 				cur.moveToFirst();
-				final long retweeted_by_id = cur.getLong(cur.getColumnIndexOrThrow(Statuses.RETWEETED_BY_ID));
+				final long retweeted_by_id = cur.getLong(cur.getColumnIndexOrThrow(Statuses.REPOSTED_BY_ID));
 				cur.close();
 				return retweeted_by_id;
 			}
@@ -944,7 +913,7 @@ public final class Utils implements Constants {
 	}
 
 	public static long getRetweetId(Context context, long status_id) {
-		final String[] cols = new String[] { Statuses.RETWEET_ID };
+		final String[] cols = new String[] { Statuses.REPOST_ID };
 		final String where = Statuses.STATUS_ID + "=" + status_id;
 		for (final Uri uri : STATUSES_URIS) {
 			final Cursor cur = context.getContentResolver().query(uri, cols, where, null, null);
@@ -953,7 +922,7 @@ public final class Utils implements Constants {
 			}
 			if (cur.getCount() > 0) {
 				cur.moveToFirst();
-				final long retweet_id = cur.getLong(cur.getColumnIndexOrThrow(Statuses.RETWEET_ID));
+				final long retweet_id = cur.getLong(cur.getColumnIndexOrThrow(Statuses.REPOST_ID));
 				cur.close();
 				return retweet_id;
 			}
@@ -1077,59 +1046,19 @@ public final class Utils implements Constants {
 					}
 
 				}
-				final String rest_base_url = cur.getString(cur.getColumnIndexOrThrow(Accounts.REST_BASE_URL));
-				final String signing_rest_base_url = cur.getString(cur
-						.getColumnIndexOrThrow(Accounts.SIGNING_REST_BASE_URL));
-				final String search_base_url = cur.getString(cur.getColumnIndexOrThrow(Accounts.SEARCH_BASE_URL));
-				final String upload_base_url = cur.getString(cur.getColumnIndexOrThrow(Accounts.UPLOAD_BASE_URL));
-				final String oauth_base_url = cur.getString(cur.getColumnIndexOrThrow(Accounts.OAUTH_BASE_URL));
-				final String signing_oauth_base_url = cur.getString(cur
-						.getColumnIndexOrThrow(Accounts.SIGNING_OAUTH_BASE_URL));
-				if (!isNullOrEmpty(rest_base_url)) {
-					cb.setRestBaseURL(rest_base_url);
-				}
-				if (!isNullOrEmpty(search_base_url)) {
-					cb.setSearchBaseURL(search_base_url);
-				}
-				if (!isNullOrEmpty(upload_base_url)) {
-					cb.setUploadBaseURL(upload_base_url);
-				}
-				if (!isNullOrEmpty(signing_rest_base_url)) {
-					cb.setSigningRestBaseURL(signing_rest_base_url);
-				}
-				if (!isNullOrEmpty(oauth_base_url)) {
-					cb.setOAuthBaseURL(oauth_base_url);
-				}
-				if (!isNullOrEmpty(signing_oauth_base_url)) {
-					cb.setSigningOAuthBaseURL(signing_oauth_base_url);
-				}
 				cb.setIncludeEntitiesEnabled(include_entities);
 				cb.setIncludeRTsEnabled(include_rts);
 
-				switch (cur.getInt(cur.getColumnIndexOrThrow(Accounts.AUTH_TYPE))) {
-					case Accounts.AUTH_TYPE_OAUTH:
-					case Accounts.AUTH_TYPE_XAUTH:
-						if (isNullOrEmpty(consumer_key) || isNullOrEmpty(consumer_secret)) {
-							cb.setOAuthConsumerKey(CONSUMER_KEY);
-							cb.setOAuthConsumerSecret(CONSUMER_SECRET);
-						} else {
-							cb.setOAuthConsumerKey(consumer_key);
-							cb.setOAuthConsumerSecret(consumer_secret);
-						}
-						twitter = new TwitterFactory(cb.build()).getInstance(new AccessToken(cur.getString(cur
-								.getColumnIndexOrThrow(Accounts.OAUTH_TOKEN)), cur.getString(cur
-								.getColumnIndexOrThrow(Accounts.TOKEN_SECRET))));
-						break;
-					case Accounts.AUTH_TYPE_BASIC:
-						twitter = new TwitterFactory(cb.build()).getInstance(new BasicAuthorization(cur.getString(cur
-								.getColumnIndexOrThrow(Accounts.USERNAME)), cur.getString(cur
-								.getColumnIndexOrThrow(Accounts.BASIC_AUTH_PASSWORD))));
-						break;
-					case Accounts.AUTH_TYPE_TWIP_O_MODE:
-						twitter = new TwitterFactory(cb.build()).getInstance(new TwipOModeAuthorization());
-						break;
-					default:
+				if (isNullOrEmpty(consumer_key) || isNullOrEmpty(consumer_secret)) {
+					cb.setOAuthConsumerKey(CONSUMER_KEY);
+					cb.setOAuthConsumerSecret(CONSUMER_SECRET);
+				} else {
+					cb.setOAuthConsumerKey(consumer_key);
+					cb.setOAuthConsumerSecret(consumer_secret);
 				}
+				twitter = new TwitterFactory(cb.build()).getInstance(new AccessToken(cur.getString(cur
+						.getColumnIndexOrThrow(Accounts.OAUTH_TOKEN)), cur.getString(cur
+						.getColumnIndexOrThrow(Accounts.TOKEN_SECRET))));
 			}
 			cur.close();
 		}
@@ -1222,43 +1151,20 @@ public final class Utils implements Constants {
 		return false;
 	}
 
-	public static ContentValues makeAccountContentValues(int color, AccessToken access_token, User user,
-			String rest_api_base, String search_api_base, String basic_password, int auth_type) {
+	public static ContentValues makeAccountContentValues(int color, AccessToken access_token, User user, String basic_password) {
 		if (user == null) throw new IllegalArgumentException("User can't be null!");
 		final ContentValues values = new ContentValues();
-		switch (auth_type) {
-			case Accounts.AUTH_TYPE_TWIP_O_MODE: {
-				break;
-			}
-			case Accounts.AUTH_TYPE_BASIC: {
-				if (basic_password == null)
-					throw new IllegalArgumentException("Password can't be null in Basic mode!");
-				values.put(Accounts.BASIC_AUTH_PASSWORD, basic_password);
-				break;
-			}
-			case Accounts.AUTH_TYPE_OAUTH:
-			case Accounts.AUTH_TYPE_XAUTH: {
-				if (access_token == null)
-					throw new IllegalArgumentException("Access Token can't be null in OAuth/xAuth mode!");
-				if (user.getId() != access_token.getUserId())
-					throw new IllegalArgumentException("User and Access Token not match!");
-				values.put(Accounts.OAUTH_TOKEN, access_token.getToken());
-				values.put(Accounts.TOKEN_SECRET, access_token.getTokenSecret());
-				break;
-			}
-		}
-		values.put(Accounts.AUTH_TYPE, auth_type);
+		if (access_token == null)
+			throw new IllegalArgumentException("Access Token can't be null in OAuth/xAuth mode!");
+		if (user.getId() != access_token.getUserId())
+			throw new IllegalArgumentException("User and Access Token not match!");
+		values.put(Accounts.OAUTH_TOKEN, access_token.getToken());
+		values.put(Accounts.TOKEN_SECRET, access_token.getTokenSecret());
 		values.put(Accounts.USER_ID, user.getId());
 		values.put(Accounts.USERNAME, user.getScreenName());
 		values.put(Accounts.PROFILE_IMAGE_URL, user.getProfileImageURL().toString());
 		values.put(Accounts.USER_COLOR, color);
 		values.put(Accounts.IS_ACTIVATED, 1);
-		if (rest_api_base != null) {
-			values.put(Accounts.REST_BASE_URL, rest_api_base);
-		}
-		if (search_api_base != null) {
-			values.put(Accounts.SEARCH_BASE_URL, search_api_base);
-		}
 
 		return values;
 	}
@@ -1307,10 +1213,10 @@ public final class Utils implements Constants {
 		final Status retweeted_status = status.getRetweetedStatus();
 		if (is_retweet == 1 && retweeted_status != null) {
 			final User retweet_user = status.getUser();
-			values.put(Statuses.RETWEET_ID, status.getId());
-			values.put(Statuses.RETWEETED_BY_ID, retweet_user.getId());
-			values.put(Statuses.RETWEETED_BY_NAME, retweet_user.getName());
-			values.put(Statuses.RETWEETED_BY_SCREEN_NAME, retweet_user.getScreenName());
+			values.put(Statuses.REPOST_ID, status.getId());
+			values.put(Statuses.REPOSTED_BY_ID, retweet_user.getId());
+			values.put(Statuses.REPOSTED_BY_NAME, retweet_user.getName());
+			values.put(Statuses.REPOSTED_BY_SCREEN_NAME, retweet_user.getScreenName());
 			status = retweeted_status;
 		}
 		final User user = status.getUser();
@@ -1337,7 +1243,7 @@ public final class Utils implements Constants {
 		values.put(Statuses.IN_REPLY_TO_USER_ID, status.getInReplyToUserId());
 		values.put(Statuses.SOURCE, status.getSource());
 		values.put(Statuses.LOCATION, formatGeoLocationToString(status.getGeoLocation()));
-		values.put(Statuses.IS_RETWEET, is_retweet);
+		values.put(Statuses.IS_REPOST, is_retweet);
 		values.put(Statuses.IS_FAVORITE, status.isFavorited() ? 1 : 0);
 		values.put(Statuses.HAS_MEDIA, medias != null && medias.length > 0 ? 1 : 0);
 		return values;

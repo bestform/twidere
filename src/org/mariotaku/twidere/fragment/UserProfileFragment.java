@@ -40,10 +40,10 @@ import java.net.URL;
 
 import org.mariotaku.popupmenu.PopupMenu;
 import org.mariotaku.popupmenu.PopupMenu.OnMenuItemClickListener;
-import org.mariotaku.twidere.R;
-import org.mariotaku.twidere.provider.TweetStore.Accounts;
-import org.mariotaku.twidere.provider.TweetStore.CachedUsers;
-import org.mariotaku.twidere.provider.TweetStore.Filters;
+import org.mariotaku.twidere.provider.WeiboStore.Accounts;
+import org.mariotaku.twidere.provider.WeiboStore.CachedUsers;
+import org.mariotaku.twidere.provider.WeiboStore.Filters;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.GetExternalCacheDirAccessor;
 import org.mariotaku.twidere.util.LazyImageLoader;
 import org.mariotaku.twidere.util.ServiceInterface;

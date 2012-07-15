@@ -19,7 +19,7 @@
 
 package org.mariotaku.twidere.model;
 
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
 
 import android.database.Cursor;
 
@@ -40,7 +40,7 @@ public class StatusCursorIndices {
 		text_plain = cursor.getColumnIndex(Statuses.TEXT_PLAIN);
 		profile_image_url = cursor.getColumnIndex(Statuses.PROFILE_IMAGE_URL);
 		is_favorite = cursor.getColumnIndex(Statuses.IS_FAVORITE);
-		is_retweet = cursor.getColumnIndex(Statuses.IS_RETWEET);
+		is_retweet = cursor.getColumnIndex(Statuses.IS_REPOST);
 		is_gap = cursor.getColumnIndex(Statuses.IS_GAP);
 		location = cursor.getColumnIndex(Statuses.LOCATION);
 		has_media = cursor.getColumnIndex(Statuses.HAS_MEDIA);
@@ -48,10 +48,10 @@ public class StatusCursorIndices {
 		in_reply_to_status_id = cursor.getColumnIndex(Statuses.IN_REPLY_TO_STATUS_ID);
 		in_reply_to_user_id = cursor.getColumnIndex(Statuses.IN_REPLY_TO_USER_ID);
 		in_reply_to_screen_name = cursor.getColumnIndex(Statuses.IN_REPLY_TO_SCREEN_NAME);
-		retweeted_by_name = cursor.getColumnIndex(Statuses.RETWEETED_BY_NAME);
-		retweeted_by_screen_name = cursor.getColumnIndex(Statuses.RETWEETED_BY_SCREEN_NAME);
-		retweet_id = cursor.getColumnIndex(Statuses.RETWEET_ID);
-		retweeted_by_id = cursor.getColumnIndex(Statuses.RETWEETED_BY_ID);
+		retweeted_by_name = cursor.getColumnIndex(Statuses.REPOSTED_BY_NAME);
+		retweeted_by_screen_name = cursor.getColumnIndex(Statuses.REPOSTED_BY_SCREEN_NAME);
+		retweet_id = cursor.getColumnIndex(Statuses.REPOST_ID);
+		retweeted_by_id = cursor.getColumnIndex(Statuses.REPOSTED_BY_ID);
 		user_id = cursor.getColumnIndex(Statuses.USER_ID);
 		source = cursor.getColumnIndex(Statuses.SOURCE);
 		retweet_count = cursor.getColumnIndex(Statuses.RETWEET_COUNT);

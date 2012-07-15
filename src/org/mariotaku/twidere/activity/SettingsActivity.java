@@ -21,12 +21,12 @@ package org.mariotaku.twidere.activity;
 
 import static org.mariotaku.twidere.util.Utils.restartActivity;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.provider.RecentSearchProvider;
-import org.mariotaku.twidere.provider.TweetStore.CachedUsers;
-import org.mariotaku.twidere.provider.TweetStore.DirectMessages;
-import org.mariotaku.twidere.provider.TweetStore.Mentions;
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore.CachedUsers;
+import org.mariotaku.twidere.provider.WeiboStore.DirectMessages;
+import org.mariotaku.twidere.provider.WeiboStore.Mentions;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.ServiceInterface;
 
 import android.content.ContentResolver;

@@ -19,7 +19,7 @@
 
 package org.mariotaku.twidere.model;
 
-import org.mariotaku.twidere.provider.TweetStore.DirectMessages;
+import org.mariotaku.twidere.provider.WeiboStore.DirectMessages;
 
 import android.database.Cursor;
 

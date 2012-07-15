@@ -24,9 +24,9 @@ import org.mariotaku.twidere.Constants;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-public final class TweetStore implements Constants {
+public final class WeiboStore implements Constants {
 
-	public static final String AUTHORITY = "org.mariotaku.twidere.provider.TweetStore";
+	public static final String AUTHORITY = "org.mariotaku.twidere.sinaweibo.provider.WeiboStore";
 
 	public static final Uri[] STATUSES_URIS = new Uri[] { Statuses.CONTENT_URI, Mentions.CONTENT_URI };
 
@@ -49,11 +49,6 @@ public final class TweetStore implements Constants {
 
 	public static interface Accounts extends BaseColumns {
 
-		public static final int AUTH_TYPE_OAUTH = 0;
-		public static final int AUTH_TYPE_XAUTH = 1;
-		public static final int AUTH_TYPE_BASIC = 2;
-		public static final int AUTH_TYPE_TWIP_O_MODE = 3;
-
 		public static final String CONTENT_PATH = "accounts";
 		public static final Uri CONTENT_URI = Uri.withAppendedPath(Uri.parse(PROTOCOL_CONTENT + AUTHORITY),
 				CONTENT_PATH);
@@ -71,23 +66,6 @@ public final class TweetStore implements Constants {
 		public static final String USER_ID = "user_id";
 
 		/**
-		 * Auth type of the account.</br> Type: INTEGER
-		 */
-		public static final String AUTH_TYPE = "auth_type";
-
-		/**
-		 * Password of the account. (It will not stored)<br>
-		 * Type: TEXT
-		 */
-		public static final String PASSWORD = "password";
-
-		/**
-		 * Password of the account for basic auth.<br>
-		 * Type: TEXT
-		 */
-		public static final String BASIC_AUTH_PASSWORD = "basic_auth_password";
-
-		/**
 		 * OAuth Token of the account.<br>
 		 * Type: TEXT
 		 */
@@ -98,21 +76,6 @@ public final class TweetStore implements Constants {
 		 * Type: TEXT
 		 */
 		public static final String TOKEN_SECRET = "token_secret";
-
-		public static final String REST_BASE_URL = "rest_base_url";
-
-		public static final String SIGNING_REST_BASE_URL = "signing_rest_base_url";
-
-		public static final String OAUTH_BASE_URL = "oauth_base_url";
-
-		public static final String SIGNING_OAUTH_BASE_URL = "oauth_rest_base_url";
-
-		/**
-		 * Search Base URL of the account </br> Type: TEXT
-		 */
-		public static final String SEARCH_BASE_URL = "search_base_url";
-
-		public static final String UPLOAD_BASE_URL = "upload_base_url";
 
 		public static final String USER_COLOR = "user_color";
 
@@ -128,13 +91,10 @@ public final class TweetStore implements Constants {
 		 */
 		public static final String PROFILE_IMAGE_URL = "profile_image_url";
 
-		public static final String[] COLUMNS = new String[] { _ID, USERNAME, USER_ID, AUTH_TYPE, BASIC_AUTH_PASSWORD,
-				OAUTH_TOKEN, TOKEN_SECRET, REST_BASE_URL, SIGNING_REST_BASE_URL, SEARCH_BASE_URL, UPLOAD_BASE_URL,
-				OAUTH_BASE_URL, SIGNING_OAUTH_BASE_URL, PROFILE_IMAGE_URL, USER_COLOR, IS_ACTIVATED };
+		public static final String[] COLUMNS = new String[] { _ID, USERNAME, USER_ID, OAUTH_TOKEN, TOKEN_SECRET, PROFILE_IMAGE_URL, USER_COLOR, IS_ACTIVATED };
 
 		public static final String[] TYPES = new String[] { TYPE_PRIMARY_KEY, TYPE_TEXT_NOT_NULL, TYPE_INT_UNIQUE,
-				TYPE_INT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT,
-				TYPE_TEXT, TYPE_TEXT, TYPE_INT, TYPE_BOOLEAN };
+				TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_INT, TYPE_BOOLEAN };
 
 	}
 
@@ -408,17 +368,17 @@ public final class TweetStore implements Constants {
 		public static final String STATUS_ID = "status_id";
 
 		/**
-		 * Retweet count of the status.<br>
+		 * Repost count of the status.<br>
 		 * Type: INTEGER (long)
 		 */
-		public static final String RETWEET_COUNT = "retweet_count";
+		public static final String RETWEET_COUNT = "repost_count";
 
 		/**
-		 * Set to an non-zero integer if the status is a retweet, set to
-		 * negative value if the status is retweeted by user.<br>
+		 * Set to an non-zero integer if the status is a repost, set to
+		 * negative value if the status is reposted by user.<br>
 		 * Type: INTEGER
 		 */
-		public static final String IS_RETWEET = "is_retweet";
+		public static final String IS_REPOST = "is_repost";
 
 		/**
 		 * Set to 1 if the status is a favorite.<br>
@@ -451,13 +411,13 @@ public final class TweetStore implements Constants {
 
 		public static final String IS_PROTECTED = "is_protected";
 
-		public static final String RETWEET_ID = "retweet_id";
+		public static final String REPOST_ID = "repost_id";
 
-		public static final String RETWEETED_BY_ID = "retweeted_by_id";
+		public static final String REPOSTED_BY_ID = "reposted_by_id";
 
-		public static final String RETWEETED_BY_NAME = "retweeted_by_name";
+		public static final String REPOSTED_BY_NAME = "reposted_by_name";
 
-		public static final String RETWEETED_BY_SCREEN_NAME = "retweeted_by_screen_name";
+		public static final String REPOSTED_BY_SCREEN_NAME = "reposted_by_screen_name";
 
 		/**
 		 * Timestamp of the status.<br>
@@ -473,8 +433,8 @@ public final class TweetStore implements Constants {
 
 		public static final String[] COLUMNS = new String[] { _ID, ACCOUNT_ID, STATUS_ID, USER_ID, STATUS_TIMESTAMP,
 				TEXT, TEXT_PLAIN, NAME, SCREEN_NAME, PROFILE_IMAGE_URL, IN_REPLY_TO_STATUS_ID, IN_REPLY_TO_USER_ID,
-				IN_REPLY_TO_SCREEN_NAME, SOURCE, LOCATION, RETWEET_COUNT, RETWEET_ID, RETWEETED_BY_ID,
-				RETWEETED_BY_NAME, RETWEETED_BY_SCREEN_NAME, IS_RETWEET, IS_FAVORITE, HAS_MEDIA, IS_PROTECTED, IS_GAP };
+				IN_REPLY_TO_SCREEN_NAME, SOURCE, LOCATION, RETWEET_COUNT, REPOST_ID, REPOSTED_BY_ID,
+				REPOSTED_BY_NAME, REPOSTED_BY_SCREEN_NAME, IS_REPOST, IS_FAVORITE, HAS_MEDIA, IS_PROTECTED, IS_GAP };
 
 		public static final String[] TYPES = new String[] { TYPE_PRIMARY_KEY, TYPE_INT, TYPE_INT, TYPE_INT, TYPE_INT,
 				TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_TEXT, TYPE_INT, TYPE_INT, TYPE_TEXT, TYPE_TEXT,

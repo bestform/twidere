@@ -1,16 +1,16 @@
 package org.mariotaku.twidere.adapter;
 
-import static org.mariotaku.twidere.provider.TweetStore.DirectMessages.ConversationsEntry.IDX_CONVERSATION_ID;
-import static org.mariotaku.twidere.provider.TweetStore.DirectMessages.ConversationsEntry.IDX_NAME;
-import static org.mariotaku.twidere.provider.TweetStore.DirectMessages.ConversationsEntry.IDX_PROFILE_IMAGE_URL;
-import static org.mariotaku.twidere.provider.TweetStore.DirectMessages.ConversationsEntry.IDX_SCREEN_NAME;
-import static org.mariotaku.twidere.provider.TweetStore.DirectMessages.ConversationsEntry.IDX_TEXT;
+import static org.mariotaku.twidere.provider.WeiboStore.DirectMessages.ConversationsEntry.IDX_CONVERSATION_ID;
+import static org.mariotaku.twidere.provider.WeiboStore.DirectMessages.ConversationsEntry.IDX_NAME;
+import static org.mariotaku.twidere.provider.WeiboStore.DirectMessages.ConversationsEntry.IDX_PROFILE_IMAGE_URL;
+import static org.mariotaku.twidere.provider.WeiboStore.DirectMessages.ConversationsEntry.IDX_SCREEN_NAME;
+import static org.mariotaku.twidere.provider.WeiboStore.DirectMessages.ConversationsEntry.IDX_TEXT;
 import static org.mariotaku.twidere.util.Utils.formatToShortTimeString;
 import static org.mariotaku.twidere.util.Utils.parseURL;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.model.DMConversationsEntryViewHolder;
-import org.mariotaku.twidere.provider.TweetStore.DirectMessages.ConversationsEntry;
+import org.mariotaku.twidere.provider.WeiboStore.DirectMessages.ConversationsEntry;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.BaseAdapterInterface;
 import org.mariotaku.twidere.util.LazyImageLoader;
 

@@ -25,11 +25,11 @@ import static org.mariotaku.twidere.util.Utils.parseURL;
 
 import org.mariotaku.popupmenu.PopupMenu;
 import org.mariotaku.popupmenu.PopupMenu.OnMenuItemClickListener;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.activity.HomeActivity;
-import org.mariotaku.twidere.provider.TweetStore.Accounts;
-import org.mariotaku.twidere.provider.TweetStore.Mentions;
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore.Accounts;
+import org.mariotaku.twidere.provider.WeiboStore.Mentions;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.ArrayUtils;
 import org.mariotaku.twidere.util.LazyImageLoader;
 

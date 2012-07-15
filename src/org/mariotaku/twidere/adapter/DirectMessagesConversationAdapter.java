@@ -25,10 +25,10 @@ import static org.mariotaku.twidere.util.Utils.parseURL;
 
 import java.net.URL;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.model.DMConversationViewHolder;
 import org.mariotaku.twidere.model.DirectMessageCursorIndices;
 import org.mariotaku.twidere.model.ParcelableDirectMessage;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.DirectMessagesAdapterInterface;
 import org.mariotaku.twidere.util.LazyImageLoader;
 

@@ -35,12 +35,12 @@ import java.util.List;
 
 import org.mariotaku.menubar.MenuBar;
 import org.mariotaku.menubar.MenuBar.OnMenuItemClickListener;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.fragment.ImagesPreviewFragment.ImageSpec;
 import org.mariotaku.twidere.model.ParcelableStatus;
 import org.mariotaku.twidere.model.StatusCursorIndices;
-import org.mariotaku.twidere.provider.TweetStore;
-import org.mariotaku.twidere.provider.TweetStore.Statuses;
+import org.mariotaku.twidere.provider.WeiboStore;
+import org.mariotaku.twidere.provider.WeiboStore.Statuses;
+import org.mariotaku.twidere.sinaweibo.R;
 import org.mariotaku.twidere.util.LazyImageLoader;
 import org.mariotaku.twidere.util.ServiceInterface;
 import org.mariotaku.twidere.util.TwidereLinkify;
@@ -461,7 +461,7 @@ public class ViewStatusFragment extends BaseFragment implements OnClickListener,
 			final String where = Statuses.STATUS_ID + " = " + mStatusId;
 
 			// Get status from databases.
-			for (final Uri uri : TweetStore.STATUSES_URIS) {
+			for (final Uri uri : WeiboStore.STATUSES_URIS) {
 				if (status != null) return new Response<ParcelableStatus>(status, null);
 				final Cursor cur = mResolver.query(uri, cols, where, null, null);
 				if (cur == null) {

@@ -19,7 +19,7 @@
 
 package org.mariotaku.twidere.activity;
 
-import org.mariotaku.twidere.R;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.os.Bundle;
 import android.view.MenuItem;

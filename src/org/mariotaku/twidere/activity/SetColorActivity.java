@@ -24,10 +24,10 @@ import static org.mariotaku.twidere.util.Utils.getColorPreviewBitmap;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.fragment.ColorPickerDialogFragment;
 import org.mariotaku.twidere.fragment.ColorPickerDialogFragment.OnColorSelectedListener;
-import org.mariotaku.twidere.provider.TweetStore.Accounts;
+import org.mariotaku.twidere.provider.WeiboStore.Accounts;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.content.Context;
 import android.content.Intent;

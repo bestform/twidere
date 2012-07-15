@@ -25,10 +25,10 @@ import static org.mariotaku.twidere.util.Utils.isMyAccount;
 import static org.mariotaku.twidere.util.Utils.parseLong;
 
 import org.mariotaku.actionbarcompat.ActionBar;
-import org.mariotaku.twidere.R;
 import org.mariotaku.twidere.fragment.SearchTweetsFragment;
 import org.mariotaku.twidere.fragment.SearchUsersFragment;
 import org.mariotaku.twidere.provider.RecentSearchProvider;
+import org.mariotaku.twidere.sinaweibo.R;
 
 import android.app.SearchManager;
 import android.content.Intent;
